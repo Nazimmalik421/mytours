@@ -1,0 +1,106 @@
+.btn {
+    &,
+    &:link, 
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block; /*This will make element take its own space and it wont overlap on other elements and we should always do this if wanna give some heights and width to an elements*/
+        border-radius: 10rem;
+        transition: all 0.2s; /*animation transitions can be controlled from initial stage propperty*/
+        position: relative;
+        font-size: $default-font-size;
+        
+        //Change for the buton element
+        border: none;
+        cursor: pointer;
+    }
+
+    
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow:0 1rem 2rem rgba($color-black, 0.555); /*1st value is for X direction 2nd value is for Y direction 3rd value is for Blur effect*/
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.75);
+            opacity: 0;
+        }
+    }
+
+    &:focus,
+    &:active{
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow:0 .5rem .5rem rgba($color-black, 0.5);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+        @include respond(tab-land){
+            padding: .5rem 2rem;
+        }
+       
+    }
+    
+    &::after {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+
+    &--animated {
+        animation: moveInBottom 0.4s ease-out 1s;/*1st-AnimationName, 2nd-Animation duration, 3rd-effect, 4th delay*/
+        animation-fill-mode: backwards; /*btn was visible even before the animation could start
+        so I applied this mode as it will automatically apply the styles up to zero percent before the 
+        animation starts*/
+    }    
+}
+
+.btn-text {
+    &:link,
+    &:visited{
+        position: relative;
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary ;
+        padding: 3px;
+        transition: all 0.2s ease-out ;
+        z-index: 1;
+    }
+
+    &:hover{
+       background-color: $color-primary;
+       color: $color-white;
+       box-shadow: 0 1rem 2rem rgba($color-black,.25);
+       transform: translateY(-0.25rem);
+    }
+
+    &:active{
+        box-shadow: 0 .5rem 1rem rgba($color-black,.25);
+        transform: translateY(0); 
+    }
+}
